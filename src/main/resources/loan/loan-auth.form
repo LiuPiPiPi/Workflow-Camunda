@@ -1,0 +1,51 @@
+{
+  "components": [
+    {
+      "text": "# 贷款信息确认",
+      "type": "text",
+      "layout": {
+        "row": "Row_0q2hynx",
+        "columns": null
+      },
+      "id": "Field_19cdvo5"
+    },
+    {
+      "label": "贷款人",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1x8s4un",
+        "columns": null
+      },
+      "id": "Field_1uj0khf",
+      "key": "lenderId",
+      "appearance": {},
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "label": "金额",
+      "type": "number",
+      "layout": {
+        "row": "Row_0hnjewd",
+        "columns": null
+      },
+      "id": "Field_0him21e",
+      "key": "amount",
+      "disabled": false,
+      "properties": {},
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "loan-auth",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.10.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.16.0",
+  "schemaVersion": 8
+}

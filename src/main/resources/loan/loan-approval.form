@@ -1,0 +1,42 @@
+{
+  "components": [
+    {
+      "text": "# 发起贷款申请",
+      "type": "text",
+      "layout": {
+        "row": "Row_1cbs713",
+        "columns": null
+      },
+      "id": "Field_1vcd4zk"
+    },
+    {
+      "label": "贷款人",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_00kdfnw",
+        "columns": null
+      },
+      "id": "Field_0dcj8wp",
+      "key": "lenderId"
+    },
+    {
+      "label": "金额",
+      "type": "number",
+      "layout": {
+        "row": "Row_0oxyax4",
+        "columns": null
+      },
+      "id": "Field_04poie0",
+      "key": "amount"
+    }
+  ],
+  "type": "default",
+  "id": "loan-approval",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.10.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.16.0",
+  "schemaVersion": 8
+}
