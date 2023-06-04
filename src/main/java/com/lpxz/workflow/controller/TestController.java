@@ -2,7 +2,7 @@ package com.lpxz.workflow.controller;
 
 import com.lpxz.workflow.domain.SysUser;
 import com.lpxz.workflow.service.ISysUserService;
-import com.lpxz.workflow.shiro.ShiroUtil;
+import com.lpxz.workflow.shiro.ShiroUtils;
 import com.lpxz.workflow.shiro.SysPasswordService;
 import com.lpxz.workflow.util.Resp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class TestController {
                 new SysUser(2L, "ry", "ry", "admin123")
         };
         for (SysUser user : users) {
-            user.setSalt(ShiroUtil.randomSalt());
+            user.setSalt(ShiroUtils.randomSalt());
             user.setUserPassword(passwordService.encryptPassword(user.getUserAccount(), user.getUserPassword(), user.getSalt()));
             user.setCreateBy("admin");
             userService.insertUser(user);

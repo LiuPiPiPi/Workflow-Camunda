@@ -1,6 +1,7 @@
 package com.lpxz.workflow.controller;
 
 import cn.hutool.core.util.StrUtil;
+import com.lpxz.workflow.common.BaseController;
 import com.lpxz.workflow.domain.SysUser;
 import com.lpxz.workflow.shiro.SysLoginService;
 import com.lpxz.workflow.util.Resp;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/system")
-public class SysLoginController {
+public class SysLoginController extends BaseController {
 
     @Autowired
     private SysLoginService loginService;
@@ -31,9 +32,9 @@ public class SysLoginController {
     public Resp register(SysUser user) {
         // todo
 //        if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {
-//            return Resp.error("当前系统没有开启注册功能！");
+//            return error("当前系统没有开启注册功能！");
 //        }
-        return loginService.register(user) ? Resp.success() : Resp.error("注册失败,请联系系统管理人员");
+        return toResp(loginService.register(user), "register user error.");
     }
 
     @PostMapping("/login")
@@ -43,13 +44,13 @@ public class SysLoginController {
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
-            return Resp.success();
+            return success();
         } catch (AuthenticationException e) {
             String msg = "用户或密码错误";
             if (StringUtils.isNotEmpty(e.getMessage())) {
                 msg = e.getMessage();
             }
-            return Resp.error(msg);
+            return error(msg);
         }
     }
 }

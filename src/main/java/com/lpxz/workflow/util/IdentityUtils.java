@@ -8,7 +8,7 @@ import com.lpxz.workflow.domain.SysUser;
  * @author LPxz
  * @date 2023/5/29
  */
-public class IdentityUtil {
+public class IdentityUtils {
     /**
      * 将自定义用户实体类转换为 Camunda 的 User
      *

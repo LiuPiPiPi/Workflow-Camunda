@@ -3,7 +3,7 @@ package com.lpxz.workflow.shiro.realm;
 import com.lpxz.workflow.domain.SysUser;
 import com.lpxz.workflow.service.ISysMenuService;
 import com.lpxz.workflow.service.ISysRoleService;
-import com.lpxz.workflow.shiro.ShiroUtil;
+import com.lpxz.workflow.shiro.ShiroUtils;
 import com.lpxz.workflow.shiro.SysLoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -45,7 +44,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        SysUser user = ShiroUtil.getSysUser();
+        SysUser user = ShiroUtils.getSysUser();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 管理员拥有所有权限
         if (user.isAdmin()) {

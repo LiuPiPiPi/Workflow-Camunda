@@ -4,23 +4,18 @@ import cn.hutool.core.util.ObjectUtil;
 import com.lpxz.workflow.domain.SysUser;
 import com.lpxz.workflow.shiro.realm.UserRealm;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.mgt.RealmSecurityManager;
-import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.BeanUtils;
-
-import java.security.Principal;
 
 /**
  * @author LPxz
  * @date 2023/5/31
  */
-public class ShiroUtil {
+public class ShiroUtils {
 
     public static Subject getSubject() {
         return SecurityUtils.getSubject();

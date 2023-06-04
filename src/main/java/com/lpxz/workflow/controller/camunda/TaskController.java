@@ -1,4 +1,4 @@
-package com.lpxz.workflow.controller;
+package com.lpxz.workflow.controller.camunda;
 
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.task.Task;

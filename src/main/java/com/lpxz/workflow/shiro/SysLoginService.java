@@ -41,7 +41,7 @@ public class SysLoginService {
         } else if (UserConstants.NOT_UNIQUE.equals(userService.checkAccountUnique(username))) {
             throw new BaseException("保存用户[" + username + "]失败，注册账号已存在");
         } else {
-            user.setSalt(ShiroUtil.randomSalt());
+            user.setSalt(ShiroUtils.randomSalt());
             user.setUserPassword(passwordService.encryptPassword(user.getUserAccount(), user.getUserPassword(), user.getSalt()));
         }
         return userService.registerUser(user);
@@ -91,7 +91,7 @@ public class SysLoginService {
      * 记录登录信息
      */
     public void recordLoginInfo(SysUser user) {
-        user.setLoginIp(ShiroUtil.getIp());
+        user.setLoginIp(ShiroUtils.getIp());
         user.setLoginDate(new Date());
         userService.updateUserInfo(user);
     }

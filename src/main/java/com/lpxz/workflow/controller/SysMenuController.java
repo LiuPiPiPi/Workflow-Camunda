@@ -1,9 +1,9 @@
 package com.lpxz.workflow.controller;
 
+import com.lpxz.workflow.common.BaseController;
 import com.lpxz.workflow.domain.SysMenu;
 import com.lpxz.workflow.service.ISysMenuService;
-import com.lpxz.workflow.shiro.ShiroUtil;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.lpxz.workflow.shiro.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/system/menu")
-public class SysMenuController {
+public class SysMenuController extends BaseController {
 
     @Autowired
     private ISysMenuService menuService;
@@ -27,7 +27,7 @@ public class SysMenuController {
     @PostMapping("/list")
     @ResponseBody
     public List<SysMenu> list(SysMenu menu) {
-        Long userId = ShiroUtil.getSysUser().getUserId();
+        Long userId = ShiroUtils.getSysUser().getUserId();
         return menuService.selectMenuList(menu, userId);
     }
 }

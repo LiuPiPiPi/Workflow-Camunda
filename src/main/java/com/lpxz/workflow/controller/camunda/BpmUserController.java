@@ -1,4 +1,4 @@
-package com.lpxz.workflow.controller;
+package com.lpxz.workflow.controller.camunda;
 
 import io.swagger.annotations.ApiOperation;
 import org.camunda.bpm.engine.IdentityService;

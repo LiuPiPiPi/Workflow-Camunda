@@ -86,11 +86,6 @@ public class Resp {
                 .setMessage(message);
     }
 
-    // 判断修改数据是否成功
-    public static Resp row(int rows) {
-        return rows > 0 ? success() : error("update data error.");
-    }
-
     private static class ResCode {
         /**
          * 操作成功
