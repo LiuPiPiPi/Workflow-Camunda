@@ -1,4 +1,4 @@
-package com.lpxz.workflow.constant;
+package com.lpxz.workflow.enums;
 
 /**
  * @author LPxz

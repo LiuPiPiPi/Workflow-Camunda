@@ -2,7 +2,7 @@ package com.lpxz.workflow.util;
 
 import org.camunda.bpm.engine.identity.User;
 import org.camunda.bpm.engine.impl.persistence.entity.UserEntity;
-import com.lpxz.workflow.model.CustomUser;
+import com.lpxz.workflow.domain.SysUser;
 
 /**
  * @author LPxz
@@ -15,15 +15,15 @@ public class IdentityUtil {
      * @param user
      * @return
      */
-    public static User toCamundaUser(CustomUser user) {
+    public static User toCamundaUser(SysUser user) {
         if (user != null) {
             User userEntity = new UserEntity();
-            userEntity.setId(user.getUserName());
-            if (user.getRealName() != null) {
-                userEntity.setFirstName(user.getRealName());
+            userEntity.setId(user.getUserAccount());
+            if (user.getNickName() != null) {
+                userEntity.setFirstName(user.getNickName());
             }
-            userEntity.setEmail(user.getEmail());
-            userEntity.setPassword(user.getPassword());
+            userEntity.setEmail(user.getUserEmail());
+            userEntity.setPassword(user.getUserPassword());
             return userEntity;
         }
         return null;
@@ -35,14 +35,14 @@ public class IdentityUtil {
      * @param user
      * @return
      */
-    public static CustomUser toCustomUser(User user) {
+    public static SysUser toCustomUser(User user) {
         if (user != null) {
-            CustomUser customUser = new CustomUser();
-            customUser.setUserName(user.getId());
-            customUser.setRealName(user.getFirstName());
-            customUser.setEmail(user.getEmail());
-            customUser.setPassword(user.getPassword());
-            return customUser;
+            SysUser sysUser = new SysUser();
+            sysUser.setUserAccount(user.getId());
+            sysUser.setNickName(user.getFirstName());
+            sysUser.setUserEmail(user.getEmail());
+            sysUser.setUserPassword(user.getPassword());
+            return sysUser;
         }
         return null;
     }

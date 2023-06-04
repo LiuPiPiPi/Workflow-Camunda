@@ -1,10 +1,10 @@
-package com.lpxz.workflow.service;
+package com.lpxz.workflow.service.impl;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
-import com.lpxz.workflow.constant.ProcessKey;
+import com.lpxz.workflow.enums.ProcessKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

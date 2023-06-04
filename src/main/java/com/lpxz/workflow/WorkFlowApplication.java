@@ -2,12 +2,14 @@ package com.lpxz.workflow;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableProcessApplication
+@MapperScan("com.lpxz.workflow.mapper")
 public class WorkFlowApplication {
 
     public static void main(String... args) {
