@@ -21,6 +21,7 @@ public class SysUser extends BaseEntity {
     /**
      * 用户 ID
      */
+    @NotNull
     private Long userId;
 
     /**
@@ -31,13 +32,13 @@ public class SysUser extends BaseEntity {
     /**
      * 账号
      */
-//    @NotNull(message = "用户账号不能为空")
+    @NotNull(message = "用户账号不能为空")
     private String userAccount;
 
     /**
      * 用户名称
      */
-//    @NotNull(message = "用户名称不能为空")
+    @NotNull(message = "用户名称不能为空")
     private String nickName;
 
     /**

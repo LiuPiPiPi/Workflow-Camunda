@@ -3,9 +3,12 @@
 server:
   port: 8080
 
-camunda.bpm.admin-user:
-  id: admin
-  password: admin
+camunda.bpm:
+  webapp:
+    index-redirect-enabled: true
+  admin-user:
+    id: admin
+    password: admin
 
 spring:
   datasource:
@@ -13,6 +16,10 @@ spring:
     url: jdbc:mysql://localhost:3307/workflow_demo?serverTimezone=Asia/Shanghai
     username: test
     password: liubihao
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
 
 camunda:
   bpm:

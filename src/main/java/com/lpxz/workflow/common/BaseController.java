@@ -61,6 +61,7 @@ public class BaseController {
     /**
      * 响应请求分页数据
      */
+    // todo
     protected TableDataInfo getDataTable(List<?> list) {
         TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(0);

@@ -5,12 +5,14 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lpxz.workflow.common.BaseException;
 import com.lpxz.workflow.constant.UserConstants;
+import com.lpxz.workflow.domain.SysRole;
 import com.lpxz.workflow.domain.SysUser;
 import com.lpxz.workflow.domain.SysUserRole;
 import com.lpxz.workflow.mapper.SysRoleMapper;
 import com.lpxz.workflow.mapper.SysUserMapper;
 import com.lpxz.workflow.mapper.SysUserRoleMapper;
 import com.lpxz.workflow.service.ISysUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,6 @@ import java.util.List;
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService {
-
-    private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
     @Autowired
     private SysUserMapper userMapper;
@@ -135,7 +135,6 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     @Transactional
-    // todo
     public int updateUser(SysUser user) {
         Long userId = user.getUserId();
         // 删除用户与角色关联
@@ -162,7 +161,7 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     public int resetUserPwd(SysUser user) {
-        return 0;
+        return updateUserInfo(user);
     }
 
     @Override
@@ -202,7 +201,15 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     public String selectUserRoleGroup(Long userId) {
-        return null;
+        List<SysRole> roleList = roleMapper.selectRolesByUserId(userId);
+        StringBuilder idsStr = new StringBuilder();
+        for (SysRole role : roleList) {
+            idsStr.append(role.getRoleName()).append(",");
+        }
+        if (StringUtils.isNotEmpty(idsStr.toString())) {
+            return idsStr.substring(0, idsStr.length() - 1);
+        }
+        return idsStr.toString();
     }
 
     @Override

@@ -47,7 +47,7 @@ public class TaskVo {
     private Date endTime;
 
     /**
-     * 类型 todo 待办 done 已办
+     * 类型 0todo 待办 done 已办
      */
     private String type;
 }

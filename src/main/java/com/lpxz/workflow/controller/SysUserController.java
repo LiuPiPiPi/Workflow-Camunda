@@ -8,6 +8,7 @@ import com.lpxz.workflow.service.ISysUserService;
 import com.lpxz.workflow.shiro.ShiroUtils;
 import com.lpxz.workflow.shiro.SysPasswordService;
 import com.lpxz.workflow.util.Resp;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,17 +30,17 @@ public class SysUserController extends BaseController {
     private SysPasswordService passwordService;
 
     //    @RequiresPermissions("system:role:list")
+    @ApiOperation("查询用户列表")
     @PostMapping("/list")
-    @ResponseBody
     public Resp list(SysUser user) {
         List<SysUser> list = userService.selectUserList(user);
         return success(list);
     }
 
     //    @RequiresPermissions("system:user:insert")
+    @ApiOperation("注册新用户")
     @PostMapping("/insert")
-    @ResponseBody
-    public Resp insertUser(@Validated SysUser user) {
+    public Resp insert(@Validated SysUser user) {
         if (UserConstants.NOT_UNIQUE.equals(userService.checkAccountUnique(user.getUserAccount()))) {
             return Resp.error("新增用户'" + user.getUserAccount() + "'失败，登录账号已存在");
         } else if (UserConstants.NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {
@@ -54,9 +55,9 @@ public class SysUserController extends BaseController {
     }
 
     //    @RequiresPermissions("system:user:update")
+    @ApiOperation("编辑用户信息")
     @PostMapping("/update")
-    @ResponseBody
-    public Resp updateUser(@Validated SysUser user) {
+    public Resp update(@Validated SysUser user) {
         userService.checkUserAllowed(user);
         if (UserConstants.NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {
             return error("修改用户'" + user.getUserAccount() + "'失败，手机号码已存在");
@@ -67,19 +68,18 @@ public class SysUserController extends BaseController {
         return toResp(userService.updateUser(user), "update user error.");
     }
 
-    /**
-     * 用户授权角色
-     */
-//    @RequiresPermissions("system:user:insert")
-    @PostMapping("/insertRole")
-    @ResponseBody
-    public Resp insertRole(Long userId, Long[] roleIds) {
-        userService.insertUserAuth(userId, roleIds);
-        return success();
+    @ApiOperation("删除用户")
+    @DeleteMapping("/delete")
+    public Resp delete(@Validated SysUser user) {
+        userService.deleteUserById(user.getUserId());
+        return success("删除成功");
     }
 
-    @DeleteMapping("/delete")
-    public Resp delete(SysRole role) {
-        return null;
+//    @RequiresPermissions("system:user:insert")
+    @ApiOperation("用户授权角色")
+    @PostMapping("/updateUserRole")
+    public Resp updateUserRole(Long userId, Long[] roleIds) {
+        userService.insertUserAuth(userId, roleIds);
+        return success();
     }
 }

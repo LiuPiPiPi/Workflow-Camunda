@@ -6,10 +6,7 @@ import org.camunda.bpm.engine.identity.User;
 import org.camunda.bpm.engine.identity.UserQuery;
 import org.camunda.bpm.engine.impl.persistence.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,10 +14,12 @@ import java.util.List;
  * @author LPxz
  * @date 2023/5/28
  */
+@RestController
+@RequestMapping("/bpm/user")
 public class BpmUserController {
 
     @Autowired
-    IdentityService identityService;
+    private IdentityService identityService;
 
     @ApiOperation(value = "启动流程", notes = "根据流程定义key启动最新版本并且无租户的流程")
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST, consumes = "application/json")

@@ -44,7 +44,7 @@ public class ProcessController extends BaseController {
     @Autowired
     private IProcessService processService;
 
-    @ApiOperation(value = "查看已部署流程")
+    @ApiOperation("查看已部署流程")
     @PostMapping("/list")
     public Resp list() {
         DeploymentQuery deploymentQuery = repositoryService.createDeploymentQuery();
@@ -58,10 +58,9 @@ public class ProcessController extends BaseController {
             processList.add(process);
         }
         return success(processList);
-//        return getDataTable(list);
     }
 
-    @ApiOperation(value = "部署流程")
+    @ApiOperation("部署流程")
     @PostMapping("/deploy/{filePath}")
     public Resp deploy(@PathVariable String filePath) {
         Deployment deploy = repositoryService.createDeployment()
@@ -72,17 +71,18 @@ public class ProcessController extends BaseController {
         return success(deploy);
     }
 
-    @ApiOperation(value = "启动流程实例")
+    @ApiOperation("启动流程实例")
     @RequestMapping("/start")
     public Resp startProcess(String processKey) {
         Map<String, Object> variables = new HashMap<>();
+        // todo 将变量 (assignee, text) 赋值给 variables
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processKey, variables);
         logger.info("processInstance.getId() = " + processInstance.getId());
         logger.info("processInstance.getProcessDefinitionId() = " + processInstance.getProcessDefinitionId());
         return success(processInstance);
     }
 
-    @ApiOperation(value = "查询待办")
+    @ApiOperation("查询待办")
     @RequestMapping("/query/{assignee}")
     public Resp queryTask(@PathVariable String assignee) {
         List<Task> list = taskService.createTaskQuery()
@@ -98,11 +98,11 @@ public class ProcessController extends BaseController {
         return success(list);
     }
 
-    @RequestMapping("/complete/{taskId}")
-    public Resp completeTask(@PathVariable String taskId) {
-        taskService.complete(taskId);
-        logger.info("任务审批完成...");
-        return success();
+    @DeleteMapping("/delete")
+    public Resp delete() {
+        DeploymentQuery deploymentQuery = repositoryService.createDeploymentQuery();
+//        return Resp.success(deploymentQuery());
+        return null;
     }
 
     /**
